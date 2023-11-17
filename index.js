@@ -4,12 +4,16 @@ require('./databaseConnection')
 const express = require('express');
 const routes = require('./routes/taskRoutes');
 const connectDB = require('./databaseConnection');
-const app = express()
+const app = express();
 
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-
+// error middleware
+app.use((err,req,res,next)=>{
+    console.log(err);
+    res.json({message:'Something went wrong'});
+})
 // routes
 app.use('/', routes);
 app.listen(process.env.PORT , ()=>{
