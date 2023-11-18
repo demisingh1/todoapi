@@ -1,7 +1,7 @@
 const task = require('../models/taskModel')
 async function getAllTasks(req , res){
     let AllTasks = await task.find({});
-    res.json({message:AllTasks});
+    res.json({total:AllTasks.length ,message:AllTasks});
 }
 
 async function CreateTask(req , res){
